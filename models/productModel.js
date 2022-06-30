@@ -27,8 +27,8 @@ const productModel = {
     WHERE id = ?
     `;
 
-    const [[table]] = await db.query(sql, [id]);
-    return !!table;
+    const [table] = await db.query(sql, [id]);
+    return table;
   },
 };
 

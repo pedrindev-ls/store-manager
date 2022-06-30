@@ -1,3 +1,4 @@
+const ThrowingError = require('../middlewares/NotFoundError');
 const productModel = require('../models/productModel');
 
 const productService = {
@@ -11,14 +12,13 @@ const productService = {
   },
   async checkIfExists(id) {
     const item = await productModel.exists(id);
-    console.log(item);
-    if (item) {
-      return {
-        stats: 404,
-        message: 'Product not found',
-      };
+    if (item.length === 0) {
+      ThrowingError('Product not found');
     }
   },
+  // async add(name) {
+  //   productModel.
+  // }
 };
 
 module.exports = productService;

@@ -6,14 +6,19 @@ const productControler = {
     res.status(200).json(products);
   },
   async getId(req, res) {
-    const { id } = req.params;
-    // const exists = await productService.checkIfExists();
-    const product = await productService.getId(id);
-    // if (exists.stats === 404) {
-    //   return res.status(exists.stats).json(exists.message);
-    // }
-    res.status(200).json(product);
+    try {
+      const { id } = req.params;
+      await productService.checkIfExists(id);
+      const product = await productService.getId(id);
+      res.status(200).json(product);
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
   },
+  // async registration(req, res) {
+  //   const { name } = req.body;
+  //   await productService.add(name);
+  // },
 };
 
 module.exports = productControler;
