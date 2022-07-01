@@ -1,5 +1,5 @@
-const { validateBodyAdd } = require('../services/productService');
 const productService = require('../services/productService');
+const { validateBodyAdd } = require('../services/productService');
 
 const productControler = {
   async getProducts(_req, res) {
