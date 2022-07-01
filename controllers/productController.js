@@ -15,10 +15,14 @@ const productControler = {
       res.status(404).json({ message: error.message });
     }
   },
-  // async registration(req, res) {
-  //   const { name } = req.body;
-  //   await productService.add(name);
-  // },
+  async registration(req, res) {
+    const { name } = req.body;
+    const newIdProduct = await productService.add(name);
+    res.status(201).json({
+      id: newIdProduct,
+      name,
+    });
+  },
 };
 
 module.exports = productControler;

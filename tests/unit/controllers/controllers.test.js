@@ -1,9 +1,9 @@
 const sinon = require('sinon');
 const chai = require('chai');
-const productControler = require('../../controllers/productController');
+const productControler = require('../../../controllers/productController');
 const { expect } = require('chai');
-const productService = require('../../services/productService');
-const productModel = require('../../models/productModel');
+const productService = require('../../../services/productService');
+const productModel = require('../../../models/productModel');
 
 describe('testando se o controler', function () {
   beforeEach(() => {

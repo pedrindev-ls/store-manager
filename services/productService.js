@@ -16,9 +16,10 @@ const productService = {
       ThrowingError('Product not found');
     }
   },
-  // async add(name) {
-  //   productModel.
-  // }
+  async add(name) {
+    const newId = productModel.addProduct(name);
+    return newId;
+  },
 };
 
 module.exports = productService;

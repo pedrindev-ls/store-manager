@@ -1,8 +1,8 @@
 const sinon = require('sinon');
 const chai = require('chai');
-const productService = require('../../services/productService');
+const productService = require('../../../services/productService');
 const { expect } = require('chai');
-const ThrowingError = require('../../middlewares/NotFoundError');
+const ThrowingError = require('../../../middlewares/NotFoundError');
 
 describe('testando se o Service', () => {
   beforeEach(() => {

@@ -1,8 +1,8 @@
 const sinon = require('sinon');
 const chai = require('chai');
-const productModel = require('../../models/productModel');
+const productModel = require('../../../models/productModel');
 const { expect } = require('chai');
-const db = require('../../models/db')
+const db = require('../../../models/db')
 
 describe('testando se o model', function () {
   beforeEach(function () {
