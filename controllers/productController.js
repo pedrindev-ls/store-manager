@@ -49,6 +49,16 @@ const productControler = {
       res.status(404).json({ message: error.message });
     }
   },
+  async deleteProduct(req, res) {
+    try {
+      const { id } = req.params;
+      await productService.checkIfExists(id);
+      await productService.deleteItem(id);
+      return res.status(204).send();
+    } catch (error) {
+      return res.status(404).json({ message: error.message });
+    }
+  },
 };
 
 module.exports = productControler;

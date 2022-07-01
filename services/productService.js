@@ -34,6 +34,9 @@ const productService = {
       };
     }
   },
+  async deleteItem(id) {
+    await productModel.delete(id);
+  },
 };
 
 module.exports = productService;
