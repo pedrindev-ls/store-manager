@@ -1,3 +1,4 @@
+const { validateBodyAdd } = require('../services/productService');
 const productService = require('../services/productService');
 
 const productControler = {
@@ -16,12 +17,19 @@ const productControler = {
     }
   },
   async registration(req, res) {
-    const { name } = req.body;
-    const newIdProduct = await productService.add(name);
-    res.status(201).json({
-      id: newIdProduct,
-      name,
-    });
+    try {
+      const { name } = await validateBodyAdd(req.body);
+      const newIdProduct = await productService.add(name);
+      res.status(201).json({
+        id: newIdProduct,
+        name,
+      });
+    } catch (error) {
+      if (error.message === 'Column \'name\' cannot be null') {
+        return res.status(400).json({ message: '"name" is required' });
+      }
+      return res.status(422).json({ message: error.message });
+    }
   },
 };
 

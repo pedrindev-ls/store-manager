@@ -1,7 +1,12 @@
+const Joi = require('joi');
+const { runSchema } = require('../middlewares/nameStringError');
 const ThrowingError = require('../middlewares/NotFoundError');
 const productModel = require('../models/productModel');
 
 const productService = {
+  validateBodyAdd: runSchema(Joi.object({
+    name: Joi.string().min(5),
+  })),
   async get() {
     const items = await productModel.listItems();
     return items;
