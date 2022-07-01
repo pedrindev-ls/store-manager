@@ -39,6 +39,16 @@ const productModel = {
     const [table] = await db.query(sql, [name]);
     return table.insertId;
   },
+  async changeProduct(id, name) {
+    const sql = `
+    UPDATE StoreManager.products
+    SET name = ?
+    WHERE id = ?;
+    `;
+
+    const [table] = await db.query(sql, [name, id]);
+    return !!table.changedRows;
+  },
 };
 
 module.exports = productModel;

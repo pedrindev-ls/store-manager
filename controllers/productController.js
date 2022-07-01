@@ -1,5 +1,5 @@
-const productService = require('../services/productService');
 const { validateBodyAdd } = require('../services/productService');
+const productService = require('../services/productService');
 
 const productControler = {
   async getProducts(_req, res) {
@@ -25,10 +25,28 @@ const productControler = {
         name,
       });
     } catch (error) {
-      if (error.message === 'Column \'name\' cannot be null') {
-        return res.status(400).json({ message: '"name" is required' });
+      console.log(error.message);
+      if (error.message === '"name" is required') {
+        return res.status(400).json({ message: error.message });
       }
       return res.status(422).json({ message: error.message });
+    }
+  },
+  async changeProduct(req, res) {
+    try {
+      const { id } = req.params;
+      const { name } = await validateBodyAdd(req.body);
+      await productService.checkIfExists(id);
+      const itemChanged = await productService.change(id, name);
+      return res.status(200).json(itemChanged);
+    } catch (error) {
+      if (error.message === '"name" is required') {
+        return res.status(400).json({ message: error.message });
+      }
+      if (error.message === '"name" length must be at least 5 characters long') {
+        return res.status(422).json({ message: error.message });
+      }
+      res.status(404).json({ message: error.message });
     }
   },
 };
