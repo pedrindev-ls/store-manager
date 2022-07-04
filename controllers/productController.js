@@ -25,7 +25,6 @@ const productControler = {
         name,
       });
     } catch (error) {
-      console.log(error.message);
       if (error.message === '"name" is required') {
         return res.status(400).json({ message: error.message });
       }
