@@ -11,8 +11,15 @@ const salesService = {
     quantity: Joi.number().min(1).required(),
   })),
   async get() {
-    const items = await salesModel.listItems();
-    return items;
+    const items = await salesProductModel.listItems();
+    const convertedItems = items
+      .map((element) => ({
+        saleId: element.sale_id,
+        productId: element.product_id,
+        date: element.date,
+        quantity: element.quantity,
+      }));
+    return convertedItems;
   },
   async addSales(sales) {
     const saleId = await salesModel.add();
@@ -25,6 +32,27 @@ const salesService = {
     if (item.length === 0) {
       ThrowingError('Product not found');
     }
+  },
+  async checkIfSaleExists(id) {
+    const item = await salesModel.existSale(id);
+
+    if (item.length === 0) {
+      ThrowingError('Sale not found');
+    }
+  },
+  async getId(id) {
+    const item = await salesModel.getId(id);
+    return item;
+  },
+  async getSales(id) {
+    const item = await salesProductModel.getWithId(id);
+    const convertedItem = item
+      .map((element) => ({
+        productId: element.product_id,
+        date: element.date,
+        quantity: element.quantity,
+      }));
+    return convertedItem;
   },
 };
 
