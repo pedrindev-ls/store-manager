@@ -54,6 +54,10 @@ const salesService = {
       }));
     return convertedItem;
   },
+  async deleteSaledItems(id) {
+    await salesModel.delete(id);
+    await salesProductModel.delete(id);
+  },
 };
 
 module.exports = salesService;

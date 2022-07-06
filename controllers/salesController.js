@@ -34,6 +34,16 @@ const salesControler = {
       res.status(404).json({ message: error.message });
     }
   },
+  async deleteSale(req, res) {
+    try {
+      const { id } = req.params;
+      await salesService.checkIfSaleExists(id);
+      await salesService.deleteSaledItems(id);
+      return res.status(204).send();
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  },
 };
 
 module.exports = salesControler;
