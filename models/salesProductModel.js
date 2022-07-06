@@ -8,8 +8,7 @@ const salesProductModel = {
     `;
     const itemsToAdd = sales.map(({ productId, quantity }) => [saleId, productId, quantity]);
     
-    const [table] = await db.query(sql, itemsToAdd);
-    console.log(table);
+    await db.query(sql, itemsToAdd);
   },
   async listItems() {
     const sql = `

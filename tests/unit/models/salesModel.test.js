@@ -4,7 +4,7 @@ const salesModel = require('../../../models/salesModel');
 const { expect } = require('chai');
 const db = require('../../../models/db')
 
-describe('testando se o model dos Produtos', function () {
+describe('testando se o model dos vendas', function () {
   beforeEach(function () {
     sinon.restore();
   });
