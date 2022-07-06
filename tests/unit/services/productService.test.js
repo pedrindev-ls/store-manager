@@ -4,7 +4,7 @@ const productService = require('../../../services/productService');
 const { expect } = require('chai');
 const ThrowingError = require('../../../middlewares/NotFoundError');
 
-describe('testando se o Service', () => {
+describe('testando se o Service dos Produtos', () => {
   beforeEach(() => {
     sinon.restore();
   });

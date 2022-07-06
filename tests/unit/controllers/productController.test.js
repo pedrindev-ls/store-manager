@@ -5,7 +5,7 @@ const { expect } = require('chai');
 const productService = require('../../../services/productService');
 const productModel = require('../../../models/productModel');
 
-describe('testando se o controler', function () {
+describe('testando se o controler dos Produtos', function () {
   beforeEach(() => {
     sinon.restore();
   });
@@ -75,5 +75,9 @@ describe('testando se o controler', function () {
     await productControler.getId(req, res)
 
     expect(res.status.calledWith(404)).to.be.equal(true)
+  })
+  // registration, change, delete
+  it('adiciona um novo produto', async function () {
+
   })
 })
