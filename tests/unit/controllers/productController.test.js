@@ -47,6 +47,7 @@ describe('testando se o controler dos Produtos', function () {
       },
     ]
 
+    sinon.stub(productService, 'checkIfExists').resolves()
     sinon.stub(productService, 'getId').resolves(dbItem)
 
     const res = {}
@@ -128,7 +129,7 @@ describe('testando se o controler dos Produtos', function () {
       id: 1,
       name: 'Pedro'
     }
-
+    sinon.stub(productService, 'checkIfExists').resolves()
     sinon.stub(productService, 'change').resolves(dbItem)
     
     const req = {}
@@ -184,13 +185,14 @@ describe('testando se o controler dos Produtos', function () {
     expect(res.status.calledWith(404)).to.be.equal(true)
   })
   it('deleta um produto', async function () {
-    sinon.stub(productService, 'deleteItem').resolves()    
+    sinon.stub(productService, 'deleteItem').resolves()
+    sinon.stub(productService, 'checkIfExists').resolves()
     
     const req = {}
     const res = {}
     
     res.status = sinon.stub().returns(res)
-    res.json = sinon.stub()
+    res.json = sinon.stub().returns()
     req.params = { id: 1 }
 
     await productControler.deleteProduct(req, res)
